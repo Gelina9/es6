@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //箭头函数改变this指向
+
+        //普通函数的问题
+        const team = {
+            members:['Amy','Jam'],
+            teamName:"haha",
+            teamSummary:function(){
+                return this.members.map(function(member){
+                    //这个时候this不知道指向谁
+                    return `${member}隶属于${this.teamName}小组`;
+                })
+            }
+        }
+        console.log(team.teamSummary()); //["Amy隶属于undefined小组", "Jam隶属于undefined小组"]
+
+
+        //方法一
+        const team1 = {
+            members:['Amy','Jam'],
+            teamName:"haha",
+            teamSummary:function(){
+                let that = this; //注意这里，提前保存了this
+                return this.members.map(function(member){
+                    return `${member}隶属于${that.teamName}小组`;
+                })
+            }
+        }
+        console.log(team1.teamSummary());
+
+        //方法二
+        const team2 = {
+            members:['Amy','Jam'],
+            teamName:"haha",
+            teamSummary:function(){
+                return this.members.map(function(member){
+                    return `${member}隶属于${this.teamName}小组`;
+                }.bind(this)); //这里在执行的时候绑定了this
+            }
+        }
+        console.log(team2.teamSummary());
+
+        //使用箭头函数
+        const team3 = {
+            members:['Amy','Jam'],
+            teamName:"haha",
+            teamSummary:function(){
+                return this.members.map(member => {
+                    //这个时候this指向team
+                    return `${member}隶属于${this.teamName}小组`;
+                });
+            }
+        }
+        console.log(team3.teamSummary());
+    </script>
+</body>
+</html>

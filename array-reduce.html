@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1、计算数组每个值的合
+        const arr = [1,2,3,4];
+        let result = arr.reduce((sum,next) => sum + next, 0)  //这里的0是初始值
+        console.log(result);
+
+
+        //2、将数组中对象的某个属性抽离到另外一个数组中
+        const arr1 = [
+            {color:"red",num:4},
+            {color:"blue",num:3},
+            {color:"green",num:9}
+        ]
+        let arr2 = arr1.reduce((colorArr,next) => {
+            colorArr.push(next.color);
+            return colorArr;
+        },[])
+        console.log(arr2); //red blue green  
+    </script>
+</body>
+</html>

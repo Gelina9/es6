@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //所有input是否都有值
+        function Field(value){
+            this.value = value;
+        }
+        Field.prototype.isValid = function(){
+            return this.value.length > 0;
+        }
+        let username = new Field("Gianna");
+        let password  =new Field("ggfkl");
+        let tel = new Field("669770");
+
+        const userArr = [username, password, tel];
+        let result = userArr.every(function(userItem){
+            return userItem.isValid();
+        })
+
+        console.log(result); //true
+    </script>
+</body>
+</html>
