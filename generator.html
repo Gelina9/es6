@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //斐波那契
+        function fib1(max){
+            var a = 0,b = 1,arr = [0,1];
+            if(max == 1){
+                return [0];
+            }
+            while(arr.length < max){
+                [a,b] = [b,a+b];
+                arr.push(b);
+            }
+            return arr;
+        }
+        console.log(fib1(10));  //[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+        //生成器
+        function* sayName(){
+            yield 'jam';
+            yield "lucy";
+            yield "carry";
+        }
+        const name1 = sayName();
+        console.log(name1.next());
+        console.log(name1.next());
+        console.log(name1.next());
+        console.log(name1.next());
+
+        console.log("_______________________________________")
+        //迭代器还原生成器
+        function nameIterator(names){
+            let nextIndex = 0;
+            return {
+                next:function(){
+                    return nextIndex < names.length ?
+                        {value: names[ nextIndex++ ],done:false} : 
+                        {value: undefined,done:true}
+                }
+            }
+        }
+        const names = ['jam','lucy','carry'];
+        const name = nameIterator(names);
+        console.log(name.next());
+        console.log(name.next());
+        console.log(name.next());
+        console.log(name.next());
+        </script>
+</body>
+</html>

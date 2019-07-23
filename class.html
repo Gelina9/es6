@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //父类
+        class Car{
+            constructor({title}){
+                this.title = title;
+            }
+            drive(){
+                console.log("something...")
+            }
+        }
+        //子类
+        class Bmw extends Car{
+            constructor(option){
+                super(option);
+                this.color = option.color;
+            }
+            // m(){
+            //     super.drive();
+            // }
+        }
+
+        var test = new Bmw({color:"red",title:"5675821"});
+        test.drive();
+    </script>
+</body>
+</html>
